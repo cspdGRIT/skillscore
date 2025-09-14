@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV & JD Matcher - AI-Powered Recruitment Tool</title>
+    <title>CV & JD Matcher - AI-Powered Multi-CV Analysis Tool</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -51,11 +51,11 @@
             line-height: 1.6;
             color: var(--text-primary);
             background: var(--bg-secondary);
-            overflow-x: hidden;
+            overflow-x: auto;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -154,6 +154,17 @@
             box-shadow: var(--shadow-md);
         }
 
+        .btn-secondary {
+            background: var(--success-gradient);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
         .chai-btn {
             background: var(--chai-gradient);
             color: white;
@@ -174,13 +185,13 @@
         /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, var(--bg-primary) 0%, #f1f5f9 100%);
-            padding: 4rem 0;
+            padding: 3rem 0;
             text-align: center;
         }
 
         .hero-section h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
             background: var(--primary-gradient);
@@ -190,28 +201,28 @@
         }
 
         .hero-section p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
             color: var(--text-secondary);
             font-weight: 500;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
         /* Main Content */
         .main-content {
-            padding: 3rem 0;
+            padding: 2rem 0;
         }
 
-        .upload-section {
+        .input-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
-        .upload-card {
+        .input-card {
             background: var(--bg-card);
             border-radius: var(--border-radius-lg);
             padding: 2rem;
@@ -220,15 +231,15 @@
             transition: all 0.3s ease;
         }
 
-        .upload-card:hover {
-            transform: translateY(-4px);
+        .input-card:hover {
+            transform: translateY(-2px);
             box-shadow: var(--shadow-xl);
             border-color: var(--primary-color);
         }
 
-        .upload-card h3 {
+        .input-card h3 {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
             color: var(--text-primary);
@@ -237,17 +248,66 @@
             gap: 0.75rem;
         }
 
-        .upload-card h3 i {
-            font-size: 1.8rem;
+        .input-card h3 i {
+            font-size: 1.6rem;
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .upload-options {
+        /* JD Input Section */
+        .jd-input-options {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
+        }
+
+        .input-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .text-input {
+            width: 100%;
+            min-height: 200px;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius-md);
+            font-size: 0.95rem;
+            resize: vertical;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .file-upload {
@@ -258,7 +318,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            position: relative;
         }
 
         .file-upload:hover {
@@ -274,7 +333,7 @@
         }
 
         .file-upload i {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--primary-color);
             margin-bottom: 1rem;
             display: block;
@@ -293,48 +352,80 @@
             display: none;
         }
 
-        .url-input-section {
+        /* CV Input Section */
+        .cv-inputs-container {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
-        .url-input {
-            padding: 0.875rem 1rem;
+        .cv-item {
+            background: #f8fafc;
             border: 2px solid #e2e8f0;
             border-radius: var(--border-radius-md);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: var(--bg-card);
-        }
-
-        .url-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .url-input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .file-info {
-            margin-top: 1rem;
             padding: 1rem;
+            position: relative;
+        }
+
+        .cv-item-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .cv-number {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-right: auto;
+        }
+
+        .remove-cv-btn {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .remove-cv-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .add-cv-btn {
             background: var(--success-gradient);
             color: white;
+            border: none;
+            padding: 1rem;
             border-radius: var(--border-radius-md);
-            display: none;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
         }
 
-        .file-info.show {
-            display: block;
+        .add-cv-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .add-cv-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         /* Analyze Button */
         .analyze-section {
             text-align: center;
-            margin: 3rem 0;
+            margin: 2rem 0;
         }
 
         .analyze-btn {
@@ -369,108 +460,171 @@
         /* Results Section */
         .results-section {
             display: none;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .results-section.show {
             display: block;
         }
 
-        .results-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .result-card {
+        .results-header {
             background: var(--bg-card);
+            padding: 1.5rem;
             border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid #e2e8f0;
-        }
-
-        .result-card h4 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .match-score {
-            font-size: 3rem;
-            font-weight: 800;
-            text-align: center;
+            box-shadow: var(--shadow-md);
             margin-bottom: 1rem;
+            border: 2px solid var(--primary-color);
+        }
+
+        .results-header h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .results-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius-md);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
             background: var(--success-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .score-bar {
-            width: 100%;
-            height: 12px;
-            background: #e2e8f0;
-            border-radius: 6px;
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Results Table */
+        .results-table-container {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
-        .score-fill {
-            height: 100%;
-            background: var(--success-gradient);
-            border-radius: 6px;
-            transition: width 1s ease-in-out;
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
         }
 
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
+        .results-table th {
             background: var(--primary-gradient);
             color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: var(--border-radius-md);
-            font-size: 0.85rem;
+            padding: 1rem 0.75rem;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .results-table td {
+            padding: 1rem 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .results-table tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .cv-name-cell {
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 120px;
+        }
+
+        .score-cell {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            min-width: 80px;
+        }
+
+        .score-excellent {
+            color: #10b981;
+        }
+
+        .score-good {
+            color: #f59e0b;
+        }
+
+        .score-average {
+            color: #ef4444;
+        }
+
+        .skills-cell {
+            max-width: 200px;
+        }
+
+        .skill-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .skill-chip {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.75rem;
             font-weight: 500;
         }
 
-        .skill-tag.missing {
-            background: var(--warning-gradient);
-            color: #333;
+        .skill-chip.recent {
+            background: var(--success-color);
         }
 
-        .detailed-analysis {
-            grid-column: 1 / -1;
-            background: var(--bg-card);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid #e2e8f0;
+        .company-cell {
+            max-width: 150px;
         }
 
-        .detailed-analysis h4 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
+        .education-cell {
+            max-width: 180px;
+        }
+
+        .company-name {
+            font-weight: 600;
             color: var(--text-primary);
         }
 
-        .analysis-content {
-            line-height: 1.8;
-            color: var(--text-secondary);
+        .company-duration {
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
 
-        /* Chai Modal */
+        .education-degree {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .education-school {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Detailed View Modal */
         .modal {
             display: none;
             position: fixed;
@@ -492,7 +646,7 @@
             background: var(--bg-card);
             margin: 2rem auto;
             border-radius: var(--border-radius-lg);
-            max-width: 500px;
+            max-width: 800px;
             position: relative;
             box-shadow: var(--shadow-xl);
             animation: slideUp 0.3s ease;
@@ -509,7 +663,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: var(--chai-gradient);
+            background: var(--primary-gradient);
             color: white;
             border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
         }
@@ -543,8 +697,11 @@
 
         .modal-body {
             padding: 2rem;
+            max-height: 70vh;
+            overflow-y: auto;
         }
 
+        /* Chai Modal Styles */
         .chai-widget {
             text-align: center;
             padding: 1rem;
@@ -639,11 +796,54 @@
             50% { opacity: 0.5; }
         }
 
+        /* Progress Indicator */
+        .progress-indicator {
+            display: none;
+            margin: 1rem 0;
+        }
+
+        .progress-indicator.show {
+            display: block;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success-gradient);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .input-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-table-container {
+                overflow-x: auto;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav {
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 1rem;
                 padding: 1rem 0;
             }
 
@@ -651,12 +851,13 @@
                 font-size: 2rem;
             }
 
-            .upload-section {
-                grid-template-columns: 1fr;
+            .results-table {
+                font-size: 0.8rem;
             }
 
-            .results-grid {
-                grid-template-columns: 1fr;
+            .results-table th,
+            .results-table td {
+                padding: 0.5rem;
             }
 
             .chai-amounts {
@@ -666,36 +867,47 @@
             }
         }
 
-        /* API Status */
-        .api-status {
+        /* Notification styles */
+        .notification {
             position: fixed;
-            top: 80px;
+            top: 100px;
             right: 20px;
-            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 2px solid var(--success-color);
             border-radius: var(--border-radius-md);
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 1001;
-            transition: all 0.3s ease;
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow-xl);
+            z-index: 1500;
+            max-width: 350px;
+            display: none;
+            animation: slideInRight 0.3s ease;
         }
 
-        .api-status.connected {
-            background: var(--success-gradient);
-            color: white;
+        .notification.show {
+            display: block;
         }
 
-        .api-status.error {
-            background: var(--danger-color);
-            color: white;
+        .notification.error {
+            border-color: var(--danger-color);
+        }
+
+        .notification.warning {
+            border-color: var(--warning-color);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- API Status -->
-    <div class="api-status" id="apiStatus" style="display: none;">
-        <i class="fas fa-circle"></i> API Status
-    </div>
-
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -704,10 +916,13 @@
                     <i class="fas fa-brain"></i>
                     <div>
                         CV & JD Matcher
-                        <small>AI-Powered Recruitment Tool</small>
+                        <small>AI-Powered Multi-CV Analysis Tool</small>
                     </div>
                 </div>
                 <div class="nav-actions">
+                    <button class="btn btn-secondary" onclick="exportResults()" id="exportBtn" style="display: none;">
+                        <i class="fas fa-download"></i> Export Results
+                    </button>
                     <button class="chai-btn" onclick="openChaiModal()">
                         <i class="fas fa-mug-hot"></i> ChaiCheers
                     </button>
@@ -722,127 +937,185 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1>Smart CV & Job Description Matching</h1>
-            <p>Upload your CV and Job Description to get AI-powered matching analysis with detailed insights and skill gap identification using open-source LLM technology.</p>
+            <h1>Smart Multi-CV Analysis & Job Matching</h1>
+            <p>Upload one Job Description and analyze up to 10 CVs simultaneously. Get comprehensive matching scores, skill analysis, and detailed candidate insights powered by AI.</p>
         </div>
     </section>
 
     <!-- Main Content -->
     <section class="main-content">
         <div class="container">
-            <!-- Upload Section -->
-            <div class="upload-section">
-                <!-- CV Upload -->
-                <div class="upload-card">
-                    <h3><i class="fas fa-user-graduate"></i> Candidate CV</h3>
-                    <div class="upload-options">
-                        <div class="file-upload" onclick="document.getElementById('cvFileInput').click()" 
-                             ondragover="handleDragOver(event)" 
-                             ondragleave="handleDragLeave(event)" 
-                             ondrop="handleDrop(event, 'cv')">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Click to upload CV or drag and drop</p>
-                            <small>Supports PDF, DOC, DOCX files</small>
-                            <input type="file" id="cvFileInput" class="file-input" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(event, 'cv')">
+            <!-- Input Section -->
+            <div class="input-section">
+                <!-- JD Input -->
+                <div class="input-card">
+                    <h3><i class="fas fa-briefcase"></i> Job Description</h3>
+                    <div class="jd-input-options">
+                        <div class="input-tabs">
+                            <button class="tab-btn active" onclick="switchTab('jd', 'text')">Raw Text</button>
+                            <button class="tab-btn" onclick="switchTab('jd', 'file')">Upload File</button>
                         </div>
-                        <div class="file-info" id="cvFileInfo"></div>
                         
-                        <div class="url-input-section">
-                            <label style="font-weight: 600; color: var(--text-primary);">
-                                <i class="fas fa-link"></i> Or enter CV URL:
-                            </label>
-                            <input type="url" class="url-input" id="cvUrlInput" placeholder="https://example.com/resume.pdf">
+                        <div class="tab-content active" id="jd-text-tab">
+                            <textarea class="text-input" id="jdTextInput" placeholder="Paste your Job Description here...
+
+Example:
+We are looking for a Senior Software Engineer to join our team. 
+
+Requirements:
+- 5+ years of experience in software development
+- Strong proficiency in Python, JavaScript, and React
+- Experience with cloud platforms (AWS, Azure)
+- Knowledge of databases (MySQL, MongoDB)
+- Excellent communication and teamwork skills
+- Bachelor's degree in Computer Science or related field
+
+Responsibilities:
+- Develop and maintain web applications
+- Collaborate with cross-functional teams
+- Write clean, maintainable code
+- Participate in code reviews"></textarea>
+                        </div>
+                        
+                        <div class="tab-content" id="jd-file-tab">
+                            <div class="file-upload" onclick="document.getElementById('jdFileInput').click()" 
+                                 ondragover="handleDragOver(event)" 
+                                 ondragleave="handleDragLeave(event)" 
+                                 ondrop="handleDrop(event, 'jd')">
+                                <i class="fas fa-upload"></i>
+                                <p>Click to upload JD or drag and drop</p>
+                                <small>Supports PDF, DOC, DOCX, TXT files</small>
+                                <input type="file" id="jdFileInput" class="file-input" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(event, 'jd')">
+                            </div>
+                            <div class="file-info" id="jdFileInfo" style="display: none;"></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- JD Upload -->
-                <div class="upload-card">
-                    <h3><i class="fas fa-briefcase"></i> Job Description</h3>
-                    <div class="upload-options">
-                        <div class="file-upload" onclick="document.getElementById('jdFileInput').click()" 
-                             ondragover="handleDragOver(event)" 
-                             ondragleave="handleDragLeave(event)" 
-                             ondrop="handleDrop(event, 'jd')">
-                            <i class="fas fa-upload"></i>
-                            <p>Click to upload JD or drag and drop</p>
-                            <small>Supports PDF, DOC, DOCX, TXT files</small>
-                            <input type="file" id="jdFileInput" class="file-input" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(event, 'jd')">
-                        </div>
-                        <div class="file-info" id="jdFileInfo"></div>
-                        
-                        <div class="url-input-section">
-                            <label style="font-weight: 600; color: var(--text-primary);">
-                                <i class="fas fa-link"></i> Or enter JD URL:
-                            </label>
-                            <input type="url" class="url-input" id="jdUrlInput" placeholder="https://company.com/job-posting.html">
+                <!-- CV Inputs -->
+                <div class="input-card">
+                    <h3><i class="fas fa-users"></i> Candidate CVs <span style="font-size: 0.9rem; font-weight: 400; color: var(--text-muted);">(Max 10)</span></h3>
+                    <div class="cv-inputs-container" id="cvInputsContainer">
+                        <div class="cv-item" data-cv-index="0">
+                            <div class="cv-item-header">
+                                <span class="cv-number">CV #1</span>
+                                <button class="remove-cv-btn" onclick="removeCvInput(0)" style="visibility: hidden;">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="input-tabs">
+                                <button class="tab-btn active" onclick="switchTab('cv-0', 'text')">Raw Text</button>
+                                <button class="tab-btn" onclick="switchTab('cv-0', 'file')">Upload File</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="cv-0-text-tab">
+                                <textarea class="text-input" id="cv0TextInput" placeholder="Paste CV content here...
+
+Example:
+John Doe
+Senior Software Engineer
+
+Experience:
+- Software Engineer at Google (2020-2024)
+- Junior Developer at Microsoft (2018-2020)
+
+Skills: Python, JavaScript, React, AWS, MySQL, Node.js
+
+Education:
+- MS Computer Science, Stanford University (2018)
+- BS Computer Engineering, MIT (2016)"></textarea>
+                            </div>
+                            
+                            <div class="tab-content" id="cv-0-file-tab">
+                                <div class="file-upload" onclick="document.getElementById('cv0FileInput').click()" 
+                                     ondragover="handleDragOver(event)" 
+                                     ondragleave="handleDragLeave(event)" 
+                                     ondrop="handleDrop(event, 'cv-0')">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload CV or drag and drop</p>
+                                    <small>Supports PDF, DOC, DOCX files</small>
+                                    <input type="file" id="cv0FileInput" class="file-input" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(event, 'cv-0')">
+                                </div>
+                                <div class="file-info" id="cv0FileInfo" style="display: none;"></div>
+                            </div>
                         </div>
                     </div>
+                    <button class="add-cv-btn" id="addCvBtn" onclick="addCvInput()">
+                        <i class="fas fa-plus"></i> Add Another CV
+                    </button>
                 </div>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="progress-indicator" id="progressIndicator">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Processing CVs...</div>
             </div>
 
             <!-- Analyze Button -->
             <div class="analyze-section">
-                <button class="analyze-btn" id="analyzeBtn" onclick="analyzeMatch()" disabled>
-                    <i class="fas fa-magic"></i> Analyze Match with AI
+                <button class="analyze-btn" id="analyzeBtn" onclick="analyzeAllCVs()" disabled>
+                    <i class="fas fa-magic"></i> Analyze All CVs with AI
                 </button>
                 <p style="margin-top: 1rem; color: var(--text-muted);">
-                    Powered by Hugging Face Open Source LLM Models
+                    Powered by Advanced AI Models for Comprehensive Analysis
                 </p>
             </div>
 
             <!-- Results Section -->
             <div class="results-section" id="resultsSection">
-                <div class="results-grid">
-                    <!-- Match Score -->
-                    <div class="result-card">
-                        <h4><i class="fas fa-chart-line"></i> Match Score</h4>
-                        <div class="match-score" id="matchScore">0%</div>
-                        <div class="score-bar">
-                            <div class="score-fill" id="scoreFill" style="width: 0%"></div>
-                        </div>
-                        <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;" id="scoreDescription">
-                            Calculating compatibility...
-                        </p>
+                <!-- Results Header -->
+                <div class="results-header">
+                    <h3><i class="fas fa-chart-bar"></i> Analysis Results</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 0;">Comprehensive CV matching analysis completed</p>
+                    <div class="results-stats" id="resultsStats">
+                        <!-- Stats will be populated here -->
                     </div>
+                </div>
 
-                    <!-- Required Skills -->
-                    <div class="result-card">
-                        <h4><i class="fas fa-cogs"></i> Skills Analysis</h4>
-                        <div style="margin-bottom: 1rem;">
-                            <h5 style="color: var(--success-color); margin-bottom: 0.5rem;">
-                                <i class="fas fa-check"></i> Matching Skills
-                            </h5>
-                            <div class="skills-list" id="matchingSkills">
-                                <!-- Matching skills will be populated here -->
-                            </div>
-                        </div>
-                        <div>
-                            <h5 style="color: var(--warning-color); margin-bottom: 0.5rem;">
-                                <i class="fas fa-exclamation-triangle"></i> Missing Skills
-                            </h5>
-                            <div class="skills-list" id="missingSkills">
-                                <!-- Missing skills will be populated here -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Detailed Analysis -->
-                    <div class="detailed-analysis">
-                        <h4><i class="fas fa-search"></i> Detailed AI Analysis</h4>
-                        <div class="analysis-content" id="detailedAnalysis">
-                            <p>AI analysis will appear here after processing your documents...</p>
-                        </div>
-                    </div>
+                <!-- Results Table -->
+                <div class="results-table-container">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate</th>
+                                <th>Match Score</th>
+                                <th>Top Skills</th>
+                                <th>Recent Skills</th>
+                                <th>Overall Match</th>
+                                <th>Current Company</th>
+                                <th>Education</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsTableBody">
+                            <!-- Results will be populated here -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Chai Support Modal -->
-    <div class="modal" id="chaiModal">
+    <!-- Detailed View Modal -->
+    <div class="modal" id="detailModal">
         <div class="modal-content">
             <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Detailed Analysis</h3>
+                <button class="close-btn" onclick="closeModal('detailModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Detailed analysis will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Chai Support Modal -->
+    <div class="modal" id="chaiModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header" style="background: var(--chai-gradient);">
                 <h3 class="modal-title"><i class="fas fa-mug-hot"></i> Support CV & JD Matcher</h3>
                 <button class="close-btn" onclick="closeModal('chaiModal')">&times;</button>
             </div>
@@ -850,7 +1123,7 @@
                 <div class="chai-widget">
                     <div style="text-align: center; margin-bottom: 2rem;">
                         <i class="fas fa-mug-hot" style="font-size: 4rem; background: var(--chai-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;"></i>
-                        <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6;">This AI-powered CV matching tool is free to use! Support the developer to keep improving the service and adding new features.</p>
+                        <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6;">This comprehensive CV analysis tool is free to use! Support the developer to keep improving AI capabilities and adding new features.</p>
                     </div>
                     <div class="chai-amounts">
                         <div class="chai-amount" onclick="selectChaiAmount(25, this)">₹25</div>
@@ -860,7 +1133,7 @@
                     </div>
                     <div class="payment-info">
                         <p><strong><i class="fas fa-mobile-alt"></i> Developer UPI:</strong> 8341346818@ybl</p>
-                        <small style="color: var(--text-muted);">Your support helps maintain free AI services!</small>
+                        <small style="color: var(--text-muted);">Your support helps maintain free AI services for everyone!</small>
                     </div>
                     <button class="chai-pay-btn" onclick="processChaiPayment()">
                         <i class="fas fa-mug-hot"></i> ChaiCheers ₹<span id="selectedChaiAmount">50</span>
@@ -875,38 +1148,176 @@
         <i class="fas fa-mug-hot"></i>
     </button>
 
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <i class="fas fa-info-circle" style="color: var(--primary-color);"></i>
+            <div>
+                <div style="font-weight: 600;" id="notificationTitle">Notification</div>
+                <div style="font-size: 0.9rem; color: var(--text-muted);" id="notificationText">Message here</div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Global variables
-        let cvContent = '';
-        let jdContent = '';
         let selectedChaiAmount = 50;
+        let cvCount = 1;
+        let maxCVs = 10;
+        let jdContent = '';
+        let cvData = [];
+        let analysisResults = [];
 
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
             checkInputs();
             setupEventListeners();
-            checkAPIStatus();
         });
 
         function setupEventListeners() {
             // Monitor input changes
-            document.getElementById('cvUrlInput').addEventListener('input', checkInputs);
-            document.getElementById('jdUrlInput').addEventListener('input', checkInputs);
+            document.getElementById('jdTextInput').addEventListener('input', checkInputs);
+            document.getElementById('cv0TextInput').addEventListener('input', checkInputs);
+        }
+
+        function switchTab(prefix, tabType) {
+            // Hide all tab contents for this prefix
+            const tabs = document.querySelectorAll(`[id^="${prefix}-"][id$="-tab"]`);
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Hide all tab buttons for this prefix
+            const tabButtons = document.querySelectorAll(`[id^="${prefix}"] .tab-btn`);
+            const parentElement = document.querySelector(`[id*="${prefix}"]`).closest('.input-card, .cv-item');
+            if (parentElement) {
+                const buttons = parentElement.querySelectorAll('.tab-btn');
+                buttons.forEach(btn => btn.classList.remove('active'));
+                
+                // Show selected tab content and button
+                const selectedTab = document.getElementById(`${prefix}-${tabType}-tab`);
+                if (selectedTab) {
+                    selectedTab.classList.add('active');
+                }
+                
+                // Activate the clicked button
+                event.target.classList.add('active');
+            }
+        }
+
+        function addCvInput() {
+            if (cvCount >= maxCVs) return;
+            
+            const container = document.getElementById('cvInputsContainer');
+            const newIndex = cvCount;
+            
+            const cvItem = document.createElement('div');
+            cvItem.className = 'cv-item';
+            cvItem.setAttribute('data-cv-index', newIndex);
+            cvItem.innerHTML = `
+                <div class="cv-item-header">
+                    <span class="cv-number">CV #${newIndex + 1}</span>
+                    <button class="remove-cv-btn" onclick="removeCvInput(${newIndex})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="input-tabs">
+                    <button class="tab-btn active" onclick="switchTab('cv-${newIndex}', 'text')">Raw Text</button>
+                    <button class="tab-btn" onclick="switchTab('cv-${newIndex}', 'file')">Upload File</button>
+                </div>
+                
+                <div class="tab-content active" id="cv-${newIndex}-text-tab">
+                    <textarea class="text-input" id="cv${newIndex}TextInput" placeholder="Paste CV content here..." oninput="checkInputs()"></textarea>
+                </div>
+                
+                <div class="tab-content" id="cv-${newIndex}-file-tab">
+                    <div class="file-upload" onclick="document.getElementById('cv${newIndex}FileInput').click()" 
+                         ondragover="handleDragOver(event)" 
+                         ondragleave="handleDragLeave(event)" 
+                         ondrop="handleDrop(event, 'cv-${newIndex}')">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload CV or drag and drop</p>
+                        <small>Supports PDF, DOC, DOCX files</small>
+                        <input type="file" id="cv${newIndex}FileInput" class="file-input" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(event, 'cv-${newIndex}')">
+                    </div>
+                    <div class="file-info" id="cv${newIndex}FileInfo" style="display: none;"></div>
+                </div>
+            `;
+            
+            container.appendChild(cvItem);
+            cvCount++;
+            
+            // Update add button state
+            const addBtn = document.getElementById('addCvBtn');
+            if (cvCount >= maxCVs) {
+                addBtn.disabled = true;
+                addBtn.innerHTML = '<i class="fas fa-check"></i> Maximum CVs Added';
+            }
+            
+            // Show remove buttons if more than 1 CV
+            if (cvCount > 1) {
+                const removeButtons = document.querySelectorAll('.remove-cv-btn');
+                removeButtons.forEach(btn => btn.style.visibility = 'visible');
+            }
+            
+            checkInputs();
+        }
+
+        function removeCvInput(index) {
+            const cvItem = document.querySelector(`[data-cv-index="${index}"]`);
+            if (cvItem && cvCount > 1) {
+                cvItem.remove();
+                cvCount--;
+                
+                // Update CV numbers
+                updateCvNumbers();
+                
+                // Update add button state
+                const addBtn = document.getElementById('addCvBtn');
+                addBtn.disabled = false;
+                addBtn.innerHTML = '<i class="fas fa-plus"></i> Add Another CV';
+                
+                // Hide remove buttons if only 1 CV left
+                if (cvCount === 1) {
+                    const removeButtons = document.querySelectorAll('.remove-cv-btn');
+                    removeButtons.forEach(btn => btn.style.visibility = 'hidden');
+                }
+                
+                checkInputs();
+            }
+        }
+
+        function updateCvNumbers() {
+            const cvItems = document.querySelectorAll('.cv-item');
+            cvItems.forEach((item, index) => {
+                item.setAttribute('data-cv-index', index);
+                const numberElement = item.querySelector('.cv-number');
+                if (numberElement) {
+                    numberElement.textContent = `CV #${index + 1}`;
+                }
+            });
         }
 
         function checkInputs() {
-            const cvFile = document.getElementById('cvFileInput').files[0];
+            const jdText = document.getElementById('jdTextInput').value.trim();
             const jdFile = document.getElementById('jdFileInput').files[0];
-            const cvUrl = document.getElementById('cvUrlInput').value.trim();
-            const jdUrl = document.getElementById('jdUrlInput').value.trim();
             
-            const hasCv = cvFile || cvUrl;
-            const hasJd = jdFile || jdUrl;
+            const hasJD = jdText || jdFile;
+            
+            // Check if at least one CV has content
+            let hasCVs = false;
+            for (let i = 0; i < cvCount; i++) {
+                const textInput = document.getElementById(`cv${i}TextInput`);
+                const fileInput = document.getElementById(`cv${i}FileInput`);
+                
+                if ((textInput && textInput.value.trim()) || (fileInput && fileInput.files[0])) {
+                    hasCVs = true;
+                    break;
+                }
+            }
             
             const analyzeBtn = document.getElementById('analyzeBtn');
-            analyzeBtn.disabled = !(hasCv && hasJd);
+            analyzeBtn.disabled = !(hasJD && hasCVs);
             
-            if (hasCv && hasJd) {
+            if (hasJD && hasCVs) {
                 analyzeBtn.style.opacity = '1';
                 analyzeBtn.style.cursor = 'pointer';
             } else {
@@ -915,6 +1326,7 @@
             }
         }
 
+        // File handling functions
         function handleDragOver(event) {
             event.preventDefault();
             event.currentTarget.classList.add('dragover');
@@ -936,13 +1348,16 @@
             );
             
             if (validFile) {
-                const input = document.getElementById(type === 'cv' ? 'cvFileInput' : 'jdFileInput');
-                const dt = new DataTransfer();
-                dt.items.add(validFile);
-                input.files = dt.files;
-                
-                displayFileInfo(validFile, type);
-                checkInputs();
+                const inputId = type === 'jd' ? 'jdFileInput' : `${type.replace('-', '')}FileInput`;
+                const input = document.getElementById(inputId);
+                if (input) {
+                    const dt = new DataTransfer();
+                    dt.items.add(validFile);
+                    input.files = dt.files;
+                    
+                    displayFileInfo(validFile, type);
+                    checkInputs();
+                }
             }
         }
 
@@ -955,63 +1370,111 @@
         }
 
         function displayFileInfo(file, type) {
-            const infoElement = document.getElementById(type + 'FileInfo');
-            infoElement.innerHTML = `
-                <i class="fas fa-file-alt"></i>
-                <strong>Selected:</strong> ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)
-            `;
-            infoElement.classList.add('show');
+            const infoId = type === 'jd' ? 'jdFileInfo' : `${type.replace('-', '')}FileInfo`;
+            const infoElement = document.getElementById(infoId);
+            if (infoElement) {
+                infoElement.innerHTML = `
+                    <i class="fas fa-file-alt" style="color: var(--success-color);"></i>
+                    <strong>Selected:</strong> ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)
+                `;
+                infoElement.style.display = 'block';
+            }
         }
 
-        async function analyzeMatch() {
+        async function analyzeAllCVs() {
             const analyzeBtn = document.getElementById('analyzeBtn');
-            const resultsSection = document.getElementById('resultsSection');
+            const progressIndicator = document.getElementById('progressIndicator');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
             
             // Disable button and show loading
             analyzeBtn.disabled = true;
             analyzeBtn.classList.add('loading');
-            analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing with AI...';
+            analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing CVs...';
+            
+            // Show progress indicator
+            progressIndicator.classList.add('show');
             
             try {
-                // Extract content from files/URLs
-                await extractContent();
+                // Extract JD content
+                await extractJDContent();
                 
-                // Show results section
-                resultsSection.classList.add('show');
+                // Extract CV contents
+                await extractCVContents();
                 
-                // Simulate AI analysis with realistic delays
-                await performAIAnalysis();
+                // Analyze each CV
+                analysisResults = [];
+                for (let i = 0; i < cvData.length; i++) {
+                    progressFill.style.width = `${((i + 1) / cvData.length) * 100}%`;
+                    progressText.textContent = `Analyzing CV #${i + 1} of ${cvData.length}...`;
+                    
+                    const result = await analyzeCVAgainstJD(cvData[i], i);
+                    analysisResults.push(result);
+                    
+                    // Small delay for realistic progress
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+                
+                // Show results
+                displayResults();
+                
+                showNotification('Analysis Complete', `Successfully analyzed ${cvData.length} CVs against the job description.`, 'success');
                 
             } catch (error) {
                 console.error('Analysis error:', error);
-                alert('Error during analysis. Please try again or check your inputs.');
+                showNotification('Analysis Error', 'Failed to complete the analysis. Please try again.', 'error');
             } finally {
                 // Re-enable button
                 analyzeBtn.disabled = false;
                 analyzeBtn.classList.remove('loading');
-                analyzeBtn.innerHTML = '<i class="fas fa-magic"></i> Analyze Match with AI';
+                analyzeBtn.innerHTML = '<i class="fas fa-magic"></i> Analyze All CVs with AI';
+                
+                // Hide progress indicator
+                progressIndicator.classList.remove('show');
             }
         }
 
-        async function extractContent() {
-            // Extract CV content
-            const cvFile = document.getElementById('cvFileInput').files[0];
-            const cvUrl = document.getElementById('cvUrlInput').value.trim();
-            
-            if (cvFile) {
-                cvContent = await readFileContent(cvFile);
-            } else if (cvUrl) {
-                cvContent = await fetchUrlContent(cvUrl);
-            }
-            
-            // Extract JD content
+        async function extractJDContent() {
+            const jdText = document.getElementById('jdTextInput').value.trim();
             const jdFile = document.getElementById('jdFileInput').files[0];
-            const jdUrl = document.getElementById('jdUrlInput').value.trim();
             
-            if (jdFile) {
+            if (jdText) {
+                jdContent = jdText;
+            } else if (jdFile) {
                 jdContent = await readFileContent(jdFile);
-            } else if (jdUrl) {
-                jdContent = await fetchUrlContent(jdUrl);
+            }
+        }
+
+        async function extractCVContents() {
+            cvData = [];
+            
+            for (let i = 0; i < cvCount; i++) {
+                const textInput = document.getElementById(`cv${i}TextInput`);
+                const fileInput = document.getElementById(`cv${i}FileInput`);
+                
+                let content = '';
+                let name = `CV #${i + 1}`;
+                
+                if (textInput && textInput.value.trim()) {
+                    content = textInput.value.trim();
+                    // Extract name from content if possible
+                    const lines = content.split('\n');
+                    const firstLine = lines[0].trim();
+                    if (firstLine.length > 0 && firstLine.length < 50 && !firstLine.toLowerCase().includes('resume') && !firstLine.toLowerCase().includes('cv')) {
+                        name = firstLine;
+                    }
+                } else if (fileInput && fileInput.files[0]) {
+                    content = await readFileContent(fileInput.files[0]);
+                    name = fileInput.files[0].name.replace(/\.[^/.]+$/, ""); // Remove extension
+                }
+                
+                if (content) {
+                    cvData.push({
+                        index: i,
+                        name: name,
+                        content: content
+                    });
+                }
             }
         }
 
@@ -1021,192 +1484,406 @@
                 reader.onload = function(e) {
                     // For demo purposes, we'll simulate text extraction
                     // In a real app, you'd use libraries like PDF.js or mammoth.js
-                    resolve(`Content from ${file.name}: [File content would be extracted here using appropriate libraries]`);
+                    resolve(`Content from ${file.name}: [File content would be extracted here using appropriate libraries like PDF.js, mammoth.js etc.]`);
                 };
                 reader.onerror = reject;
                 reader.readAsText(file);
             });
         }
 
-        async function fetchUrlContent(url) {
-            try {
-                // For demo purposes, simulate URL content fetching
-                // In a real app, you'd need a backend to fetch and parse URLs
-                return `Content from ${url}: [URL content would be fetched and parsed here]`;
-            } catch (error) {
-                throw new Error(`Failed to fetch content from ${url}`);
+        async function analyzeCVAgainstJD(cv, index) {
+            // Simulate AI analysis - in real implementation, this would call actual AI APIs
+            await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+            
+            // Generate realistic analysis results
+            const skills = generateSkillsAnalysis();
+            const score = calculateMatchScore(skills);
+            const companyInfo = extractCompanyInfo(cv.content);
+            const educationInfo = extractEducationInfo(cv.content);
+            
+            return {
+                index: index,
+                name: cv.name,
+                score: score,
+                topSkills: skills.top,
+                recentSkills: skills.recent,
+                overallMatch: skills.overall,
+                company: companyInfo,
+                education: educationInfo,
+                detailedAnalysis: generateDetailedAnalysis(cv.name, score, skills)
+            };
+        }
+
+        function generateSkillsAnalysis() {
+            const allSkills = [
+                'Python', 'JavaScript', 'React', 'Node.js', 'HTML/CSS', 'Git',
+                'AWS', 'Docker', 'Kubernetes', 'MongoDB', 'MySQL', 'PostgreSQL',
+                'Machine Learning', 'TensorFlow', 'Django', 'Flask', 'REST APIs',
+                'GraphQL', 'Redis', 'Linux', 'Java', 'C++', 'TypeScript', 'Vue.js',
+                'Angular', 'Spring Boot', 'Microservices', 'Jenkins', 'CI/CD'
+            ];
+            
+            const shuffled = allSkills.sort(() => 0.5 - Math.random());
+            const topSkills = shuffled.slice(0, 5 + Math.floor(Math.random() * 3));
+            const recentSkills = shuffled.slice(8, 12 + Math.floor(Math.random() * 2));
+            const overallMatch = shuffled.slice(15, 20 + Math.floor(Math.random() * 5));
+            
+            return {
+                top: topSkills,
+                recent: recentSkills,
+                overall: overallMatch
+            };
+        }
+
+        function calculateMatchScore(skills) {
+            // Base score calculation on skills overlap
+            const baseScore = 60 + Math.random() * 35; // 60-95% range
+            return Math.round(baseScore);
+        }
+
+        function extractCompanyInfo(content) {
+            const companies = [
+                { name: 'Google', duration: '2020-2024' },
+                { name: 'Microsoft', duration: '2019-2023' },
+                { name: 'Amazon', duration: '2021-Present' },
+                { name: 'Apple', duration: '2018-2022' },
+                { name: 'Meta', duration: '2020-Present' },
+                { name: 'Tesla', duration: '2019-2024' },
+                { name: 'Netflix', duration: '2017-2023' },
+                { name: 'Uber', duration: '2018-Present' }
+            ];
+            
+            return companies[Math.floor(Math.random() * companies.length)];
+        }
+
+        function extractEducationInfo(content) {
+            const educations = [
+                { degree: 'MS Computer Science', school: 'Stanford University' },
+                { degree: 'BS Computer Engineering', school: 'MIT' },
+                { degree: 'MS Data Science', school: 'UC Berkeley' },
+                { degree: 'BS Software Engineering', school: 'Carnegie Mellon' },
+                { degree: 'MS AI/ML', school: 'Georgia Tech' },
+                { degree: 'BS Computer Science', school: 'Harvard University' },
+                { degree: 'MS Cybersecurity', school: 'NYU' },
+                { degree: 'BS Information Technology', school: 'UT Austin' }
+            ];
+            
+            return educations[Math.floor(Math.random() * educations.length)];
+        }
+
+        function generateDetailedAnalysis(name, score, skills) {
+            let assessment = '';
+            let strengths = '';
+            let areas = '';
+            let recommendation = '';
+            
+            if (score >= 85) {
+                assessment = 'Excellent candidate with strong alignment to the job requirements.';
+                strengths = 'Exceptional technical skills, relevant experience, and strong problem-solving abilities.';
+                areas = 'Minor skill gaps in emerging technologies that can be addressed through training.';
+                recommendation = 'Strongly recommend for interview. This candidate shows great potential for immediate impact.';
+            } else if (score >= 70) {
+                assessment = 'Good candidate with solid foundation and some skill gaps to address.';
+                strengths = 'Strong core technical skills and relevant industry experience.';
+                areas = 'Some gaps in specific technologies required for the role.';
+                recommendation = 'Recommend for interview with focus on skill development plan.';
+            } else {
+                assessment = 'Moderate match requiring significant skill development.';
+                strengths = 'Basic technical foundation with room for growth.';
+                areas = 'Significant gaps in key technologies and experience levels.';
+                recommendation = 'Consider for junior roles or with extensive training program.';
             }
+            
+            return {
+                assessment,
+                strengths,
+                areas,
+                recommendation,
+                skills: skills
+            };
         }
 
-        async function performAIAnalysis() {
-            // Simulate AI processing with Hugging Face API
-            // In a real implementation, you'd call the actual API
+        function displayResults() {
+            const resultsSection = document.getElementById('resultsSection');
+            const tableBody = document.getElementById('resultsTableBody');
+            const exportBtn = document.getElementById('exportBtn');
             
-            // Update match score with animation
-            await animateMatchScore();
+            // Show results section
+            resultsSection.classList.add('show');
+            exportBtn.style.display = 'flex';
             
-            // Update skills analysis
-            updateSkillsAnalysis();
+            // Update results stats
+            updateResultsStats();
             
-            // Update detailed analysis
-            updateDetailedAnalysis();
+            // Clear existing table content
+            tableBody.innerHTML = '';
+            
+            // Sort results by score (descending)
+            const sortedResults = analysisResults.sort((a, b) => b.score - a.score);
+            
+            // Populate table
+            sortedResults.forEach((result, index) => {
+                const row = document.createElement('tr');
+                
+                const scoreClass = result.score >= 85 ? 'score-excellent' : 
+                                  result.score >= 70 ? 'score-good' : 'score-average';
+                
+                row.innerHTML = `
+                    <td class="cv-name-cell">${result.name}</td>
+                    <td class="score-cell ${scoreClass}">${result.score}%</td>
+                    <td class="skills-cell">
+                        <div class="skill-chips">
+                            ${result.topSkills.slice(0, 4).map(skill => 
+                                `<span class="skill-chip">${skill}</span>`
+                            ).join('')}
+                        </div>
+                    </td>
+                    <td class="skills-cell">
+                        <div class="skill-chips">
+                            ${result.recentSkills.slice(0, 3).map(skill => 
+                                `<span class="skill-chip recent">${skill}</span>`
+                            ).join('')}
+                        </div>
+                    </td>
+                    <td class="skills-cell">
+                        <div class="skill-chips">
+                            ${result.overallMatch.slice(0, 3).map(skill => 
+                                `<span class="skill-chip">${skill}</span>`
+                            ).join('')}
+                            ${result.overallMatch.length > 3 ? `<span class="skill-chip">+${result.overallMatch.length - 3}</span>` : ''}
+                        </div>
+                    </td>
+                    <td class="company-cell">
+                        <div class="company-name">${result.company.name}</div>
+                        <div class="company-duration">${result.company.duration}</div>
+                    </td>
+                    <td class="education-cell">
+                        <div class="education-degree">${result.education.degree}</div>
+                        <div class="education-school">${result.education.school}</div>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="showDetailedAnalysis(${result.index})">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
         }
 
-        async function animateMatchScore() {
-            // Simulate a realistic match score calculation
-            const targetScore = Math.floor(Math.random() * 40) + 60; // 60-100% range
-            const scoreElement = document.getElementById('matchScore');
-            const fillElement = document.getElementById('scoreFill');
-            const descElement = document.getElementById('scoreDescription');
+        function updateResultsStats() {
+            const statsContainer = document.getElementById('resultsStats');
+            const totalCVs = analysisResults.length;
+            const excellentMatches = analysisResults.filter(r => r.score >= 85).length;
+            const goodMatches = analysisResults.filter(r => r.score >= 70).length;
+            const avgScore = Math.round(analysisResults.reduce((sum, r) => sum + r.score, 0) / totalCVs);
             
-            // Animate score counting
-            let currentScore = 0;
-            const increment = targetScore / 50;
-            
-            const interval = setInterval(() => {
-                currentScore += increment;
-                if (currentScore >= targetScore) {
-                    currentScore = targetScore;
-                    clearInterval(interval);
-                }
-                
-                scoreElement.textContent = Math.round(currentScore) + '%';
-                fillElement.style.width = Math.round(currentScore) + '%';
-            }, 30);
-            
-            // Update description based on score
-            setTimeout(() => {
-                if (targetScore >= 85) {
-                    descElement.textContent = 'Excellent match! Strong candidate for this role.';
-                    descElement.style.color = 'var(--success-color)';
-                } else if (targetScore >= 70) {
-                    descElement.textContent = 'Good match with some skill gaps to address.';
-                    descElement.style.color = 'var(--warning-color)';
-                } else {
-                    descElement.textContent = 'Moderate match. Significant training may be needed.';
-                    descElement.style.color = 'var(--danger-color)';
-                }
-            }, 1500);
+            statsContainer.innerHTML = `
+                <div class="stat-item">
+                    <div class="stat-number">${totalCVs}</div>
+                    <div class="stat-label">CVs Analyzed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${excellentMatches}</div>
+                    <div class="stat-label">Excellent Matches</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${goodMatches}</div>
+                    <div class="stat-label">Good Matches</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${avgScore}%</div>
+                    <div class="stat-label">Average Score</div>
+                </div>
+            `;
         }
 
-        function updateSkillsAnalysis() {
-            // Simulate skills analysis
-            const matchingSkills = [
-                'JavaScript', 'React', 'Node.js', 'HTML/CSS', 'Git',
-                'MongoDB', 'REST APIs', 'Problem Solving', 'Team Collaboration'
-            ];
+        function showDetailedAnalysis(index) {
+            const result = analysisResults.find(r => r.index === index);
+            if (!result) return;
             
-            const missingSkills = [
-                'Python', 'Machine Learning', 'Docker', 'AWS', 'GraphQL'
-            ];
+            const modal = document.getElementById('detailModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
             
-            const matchingContainer = document.getElementById('matchingSkills');
-            const missingContainer = document.getElementById('missingSkills');
+            modalTitle.textContent = `Detailed Analysis - ${result.name}`;
             
-            matchingContainer.innerHTML = matchingSkills.map(skill => 
-                `<span class="skill-tag">${skill}</span>`
-            ).join('');
-            
-            missingContainer.innerHTML = missingSkills.map(skill => 
-                `<span class="skill-tag missing">${skill}</span>`
-            ).join('');
-        }
-
-        function updateDetailedAnalysis() {
-            const analysisElement = document.getElementById('detailedAnalysis');
-            
-            // Simulate detailed AI analysis
-            const analysis = `
-                <h5 style="color: var(--primary-color); margin-bottom: 1rem;">
-                    <i class="fas fa-robot"></i> AI-Generated Analysis
-                </h5>
-                <p><strong>Overall Assessment:</strong> The candidate demonstrates a strong foundation in web development technologies with particular expertise in modern JavaScript frameworks. Their experience aligns well with the frontend requirements of this position.</p>
+            modalBody.innerHTML = `
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h4 style="color: var(--primary-color); margin: 0;">Overall Match Score</h4>
+                        <div style="font-size: 2rem; font-weight: 800; color: ${result.score >= 85 ? '#10b981' : result.score >= 70 ? '#f59e0b' : '#ef4444'};">
+                            ${result.score}%
+                        </div>
+                    </div>
+                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: var(--border-radius-md);">
+                        <strong>Assessment:</strong> ${result.detailedAnalysis.assessment}
+                    </div>
+                </div>
                 
-                <p><strong>Key Strengths:</strong></p>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
-                    <li>Solid experience with React ecosystem and component-based architecture</li>
-                    <li>Good understanding of RESTful APIs and backend integration</li>
-                    <li>Experience with version control and collaborative development</li>
-                    <li>Strong problem-solving and analytical thinking skills</li>
-                </ul>
+                <div style="margin-bottom: 2rem;">
+                    <h5 style="color: var(--success-color); margin-bottom: 1rem;">
+                        <i class="fas fa-check"></i> Key Strengths
+                    </h5>
+                    <p>${result.detailedAnalysis.strengths}</p>
+                    <div style="margin-top: 1rem;">
+                        <strong>Top Skills:</strong>
+                        <div style="margin-top: 0.5rem;">
+                            ${result.topSkills.map(skill => `<span class="skill-chip">${skill}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
                 
-                <p><strong>Areas for Development:</strong></p>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
-                    <li>Limited experience with cloud platforms (AWS/Azure)</li>
-                    <li>No mention of containerization technologies</li>
-                    <li>Could benefit from exposure to data science/ML workflows</li>
-                </ul>
+                <div style="margin-bottom: 2rem;">
+                    <h5 style="color: var(--warning-color); margin-bottom: 1rem;">
+                        <i class="fas fa-exclamation-triangle"></i> Areas for Development
+                    </h5>
+                    <p>${result.detailedAnalysis.areas}</p>
+                </div>
                 
-                <p><strong>Recommendation:</strong> This candidate would be a good fit for the role with some additional training in cloud technologies. Consider providing learning resources for AWS and Docker during onboarding.</p>
+                <div style="margin-bottom: 2rem;">
+                    <h5 style="color: var(--primary-color); margin-bottom: 1rem;">
+                        <i class="fas fa-briefcase"></i> Professional Background
+                    </h5>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <strong>Current/Last Company:</strong><br>
+                            ${result.company.name}<br>
+                            <small style="color: var(--text-muted);">${result.company.duration}</small>
+                        </div>
+                        <div>
+                            <strong>Education:</strong><br>
+                            ${result.education.degree}<br>
+                            <small style="color: var(--text-muted);">${result.education.school}</small>
+                        </div>
+                    </div>
+                </div>
                 
-                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: var(--border-radius-md); margin-top: 1rem;">
-                    <small style="color: var(--text-muted);">
-                        <i class="fas fa-info-circle"></i> Analysis generated using Hugging Face open-source language models
-                    </small>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: var(--border-radius-md); border-left: 4px solid var(--primary-color);">
+                    <strong><i class="fas fa-lightbulb"></i> Recommendation:</strong><br>
+                    ${result.detailedAnalysis.recommendation}
                 </div>
             `;
             
-            // Simulate typing effect
-            analysisElement.innerHTML = '';
-            let i = 0;
-            const typeInterval = setInterval(() => {
-                if (i < analysis.length) {
-                    analysisElement.innerHTML = analysis.substring(0, i + 1);
-                    i++;
-                } else {
-                    clearInterval(typeInterval);
-                }
-            }, 10);
+            modal.classList.add('active');
         }
 
-        async function checkAPIStatus() {
-            const statusElement = document.getElementById('apiStatus');
+        function exportResults() {
+            if (analysisResults.length === 0) return;
             
-            try {
-                // Simulate API health check
-                // In a real app, you'd ping your backend or Hugging Face API
-                setTimeout(() => {
-                    statusElement.className = 'api-status connected';
-                    statusElement.innerHTML = '<i class="fas fa-circle"></i> AI Services Online';
-                    statusElement.style.display = 'block';
-                    
-                    setTimeout(() => {
-                        statusElement.style.display = 'none';
-                    }, 3000);
-                }, 1000);
-                
-            } catch (error) {
-                statusElement.className = 'api-status error';
-                statusElement.innerHTML = '<i class="fas fa-circle"></i> AI Services Offline';
-                statusElement.style.display = 'block';
-            }
+            // Create CSV content
+            const headers = ['Candidate Name', 'Match Score', 'Top Skills', 'Recent Skills', 'Current Company', 'Company Duration', 'Education', 'School'];
+            const csvContent = [headers.join(',')];
+            
+            analysisResults.forEach(result => {
+                const row = [
+                    result.name,
+                    result.score + '%',
+                    result.topSkills.join('; '),
+                    result.recentSkills.join('; '),
+                    result.company.name,
+                    result.company.duration,
+                    result.education.degree,
+                    result.education.school
+                ];
+                csvContent.push(row.map(field => `"${field}"`).join(','));
+            });
+            
+            // Download CSV file
+            const blob = new Blob([csvContent.join('\n')], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'cv_analysis_results.csv';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            showNotification('Export Complete', 'Results have been exported as CSV file.', 'success');
         }
 
         function clearAll() {
-            // Clear file inputs
-            document.getElementById('cvFileInput').value = '';
+            // Reset form inputs
+            document.getElementById('jdTextInput').value = '';
             document.getElementById('jdFileInput').value = '';
+            document.getElementById('jdFileInfo').style.display = 'none';
             
-            // Clear URL inputs
-            document.getElementById('cvUrlInput').value = '';
-            document.getElementById('jdUrlInput').value = '';
+            // Reset CV inputs to just one
+            const container = document.getElementById('cvInputsContainer');
+            container.innerHTML = `
+                <div class="cv-item" data-cv-index="0">
+                    <div class="cv-item-header">
+                        <span class="cv-number">CV #1</span>
+                        <button class="remove-cv-btn" onclick="removeCvInput(0)" style="visibility: hidden;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="input-tabs">
+                        <button class="tab-btn active" onclick="switchTab('cv-0', 'text')">Raw Text</button>
+                        <button class="tab-btn" onclick="switchTab('cv-0', 'file')">Upload File</button>
+                        <button class="tab-btn" onclick="switchTab('cv-0', 'url')">URL</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="cv-0-text-tab">
+                        <textarea class="text-input" id="cv0TextInput" placeholder="Paste CV content here..." oninput="checkInputs()"></textarea>
+                    </div>
+                    
+                    <div class="tab-content" id="cv-0-file-tab">
+                        <div class="file-upload" onclick="document.getElementById('cv0FileInput').click()" 
+                             ondragover="handleDragOver(event)" 
+                             ondragleave="handleDragLeave(event)" 
+                             ondrop="handleDrop(event, 'cv-0')">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Click to upload CV or drag and drop</p>
+                            <small>Supports PDF, DOC, DOCX files</small>
+                            <input type="file" id="cv0FileInput" class="file-input" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(event, 'cv-0')">
+                        </div>
+                        <div class="file-info" id="cv0FileInfo" style="display: none;"></div>
+                    </div>
+                    
+                    <div class="tab-content" id="cv-0-url-tab">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem; display: block;">
+                                <i class="fas fa-link"></i> CV/Resume URL
+                            </label>
+                            <input type="url" class="text-input" id="cv0UrlInput" placeholder="https://linkedin.com/in/profile or resume URL" style="min-height: auto; padding: 0.875rem 1rem;" oninput="checkInputs()">
+                            <small style="color: var(--text-muted); display: block; margin-top: 0.5rem;">
+                                LinkedIn profile, Google Drive resume, or any webpage with CV information
+                            </small>
+                        </div>
+                        <div class="file-info" id="cv0UrlInfo" style="display: none;"></div>
+                        <button type="button" class="btn btn-primary" onclick="fetchCvFromUrl(0)" id="fetchCv0Btn" style="width: 100%; margin-top: 0.5rem;">
+                            <i class="fas fa-download"></i> Fetch CV Content
+                        </button>
+                    </div>
+                </div>
+            `;
             
-            // Hide file info
-            document.getElementById('cvFileInfo').classList.remove('show');
-            document.getElementById('jdFileInfo').classList.remove('show');
+            cvCount = 1;
+            
+            // Reset add button
+            const addBtn = document.getElementById('addCvBtn');
+            addBtn.disabled = false;
+            addBtn.innerHTML = '<i class="fas fa-plus"></i> Add Another CV';
             
             // Hide results
             document.getElementById('resultsSection').classList.remove('show');
+            document.getElementById('exportBtn').style.display = 'none';
             
-            // Reset button
+            // Reset variables
+            jdContent = '';
+            cvData = [];
+            analysisResults = [];
+            
             checkInputs();
             
-            // Reset global variables
-            cvContent = '';
-            jdContent = '';
+            showNotification('Cleared', 'All inputs and results have been cleared.', 'success');
         }
 
-        // Chai functionality
+        // Modal functions
         function openChaiModal() {
             document.getElementById('chaiModal').classList.add('active');
         }
@@ -1215,6 +1892,7 @@
             document.getElementById(modalId).classList.remove('active');
         }
 
+        // Chai functionality
         function selectChaiAmount(amount, element) {
             selectedChaiAmount = amount;
             document.querySelectorAll('.chai-amount').forEach(btn => btn.classList.remove('selected'));
@@ -1229,7 +1907,7 @@
             try {
                 window.location.href = upiUrl;
                 setTimeout(() => {
-                    alert(`Thank you for your ₹${selectedChaiAmount} ChaiCheers! This helps keep our AI services free for everyone.`);
+                    showNotification('Thank You!', `₹${selectedChaiAmount} ChaiCheers received! This helps keep our AI services free for everyone.`, 'success');
                     closeModal('chaiModal');
                 }, 1000);
             } catch (error) {
@@ -1237,14 +1915,29 @@
             }
         }
 
-        // Close modal when clicking outside
+        // Notification system
+        function showNotification(title, message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const titleElement = document.getElementById('notificationTitle');
+            const textElement = document.getElementById('notificationText');
+            
+            titleElement.textContent = title;
+            textElement.textContent = message;
+            
+            notification.className = `notification show ${type}`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+
+        // Event listeners
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('modal')) {
                 e.target.classList.remove('active');
             }
         });
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal.active').forEach(modal => {
